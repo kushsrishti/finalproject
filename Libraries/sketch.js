@@ -669,11 +669,11 @@ function orangefire()
 function redfire()
 {
     var x=0.02;
-    var y=800;
+    //var y=800;
       for(i=0; i < width; i++)
     {
     
-      var x = noise((y+i)*x,i*x); ////perlin noise 
+      var x = noise((mouseX+i)*x,i*x); ////perlin noise 
       stroke(x*355,0,0);
 
     strokeWeight(0.5);
