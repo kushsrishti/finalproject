@@ -55,18 +55,26 @@ var tanksound=0;
 soundplayed=false;
 
 
+var button;
+var button0;
+var button1;
+var button2;
+var button3;
+var button4;
+var button5;
+var button6;
 
 function setup() 
 
 {
   //blendMode(ADD);
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(1200,635);
   // mySound = loadSound('assets/bullet.mp3');
 
   ////for red rain droplets
             for (var j = 0; j <20; j++)
         {
-            rain.push(new bloodrain(random(windowWidth), 0))
+            rain.push(new bloodrain(random(1200), 0))
 
         } 
 
@@ -74,7 +82,7 @@ function setup()
 
             for (var j = 0; j <20; j++)
         {
-            smoke.push(new smoky(random(windowWidth), 0))
+            smoke.push(new smoky(random(1200), 0))
 
         } 
 
@@ -82,35 +90,50 @@ function setup()
   
       for (var i = 0; i < 100; i++) 
     {
-        particles[i] = new move(random(windowWidth), random(windowHeight));
+        particles[i] = new move(random(1200), random(635));
     }
     
     ////for red fire 
       for (var j = 0; j <20; j++)
     {
-                reds.push(new reds1(random(windowWidth), random(windowWidth)));
+                reds.push(new reds1(random(1200), random(1200)));
     } 
     
     ///tank sound that plays across all screens 
        tanksound.setVolume(0.1);
        tanksound.play();
        tanksound.loop();
+
+
+		  // slider = createSlider(0, 360, 60, 40);
+		  // slider.position(100, 100);
+		  // slider.style('width', '80px');
+
+
+		  //buttons();
   
  }
              
     ///automatically changes to other screens
 
-       setInterval(transition, 22000);
+       setInterval(transition, 25000);
 
-	    function keyPressed()
-	   {
-	  console.log("hhhh");
-	  if (keyCode==32 && keyIsPressed)
+	  function keyPressed()
 	  {
-	  if(screenNo < 9)
+	  console.log("hhhh");
+	  if (keyCode==39 && keyIsPressed)
+	  {
+	  if(screenNo < 8)
 	  screenNo++;
-	    }
-	 }
+	  }
+
+	 if (keyCode==37 && keyIsPressed)
+
+	 {
+	  if(screenNo < 8)
+	  screenNo--;
+	  }
+}
 
              
 ///calls all the background images 
@@ -120,7 +143,7 @@ function transition()
    console.log("xxxx");
 
 ///sets the screen number      
-  if(screenNo < 9) 
+  if(screenNo < 8) 
 ///moves to next screen     
   screenNo++; 
   
@@ -152,7 +175,7 @@ function preload()
    screenimages[6] = loadImage('assets/screen7.png');
    screenimages[7] = loadImage('assets/screen8.png');
    screenimages[8] = loadImage('assets/screen9.png');
-   screenimages[9] = loadImage('assets/theend.jpg');
+   //screenimages[9] = loadImage('assets/theend.jpg');
    //bullet = loadAnimation("assets/bullet.png", "assets/bullet2.png");
    bullet =loadImage('assets/bullet.png');
 
@@ -174,6 +197,59 @@ function draw()
 }
 
 
+
+// function buttons()
+
+// { 
+
+ 
+//   button = createButton('Start');
+//   button.position(280,530 );
+
+//   button.mousePressed(function(){screenNo = 1});
+//   screenNo = 1;
+
+  
+
+//   button0 = createButton('2011');
+//   button0.position(380,530 );
+//   button0.mousePressed(screenchange(2));
+
+
+//   button1 = createButton('2012');
+//   button1.position(480,530);
+//   button1.mousePressed(screenchange(3));
+
+//   button2 = createButton('2013');
+//   button2.position(580,530);
+//   button2.mousePressed(screenchange(4));
+
+//   button3 = createButton('2014');
+//   button3.position(680,530);
+//   button3.mousePressed(screenNo==5);
+
+//   button4 = createButton('2015');
+//   button4.position(780,530);
+//   button4.mousePressed(screenNo==6);
+
+//   button5 = createButton('2016');
+//   button5.position(880,530);
+//   button5.mousePressed(screenNo==7);
+//   //button5.size(50,50);
+
+//   button6 = createButton('2017');
+//   button6.position(980,530);
+//   button6.mousePressed(screenNo==8);
+
+// }
+
+// function screenchange(n)
+// {
+	
+// 	alert(screenNo=n);
+// }
+
+
 ////this function contains all 9 images
 ///the text and effects appear of the top of each background image 
 
@@ -185,7 +261,7 @@ function screenimage1()
    console.log("xx");
   //tint(0);
   ///this defines the size of the background image 
-  image(screenimages[screenNo],width/2,height/2,windowWidth,windowHeight);
+  image(screenimages[screenNo],width/2,height/2,1200,635);
   
 ///this is for the transition of images 
     milliseconds = millis();
@@ -199,7 +275,7 @@ function screenimage1()
      }
   //text(int(seconds),width/2,50);
   ///the speed of the moving tank at the bottom 
-  tankx+=0.15;
+  tankx+=0.09;
   image(tank,tankx,tanky,200,300);
   
   
@@ -207,12 +283,20 @@ function screenimage1()
     if(screenNo == 0)
    {
 
-        textSize(90);
+        textSize(85);
         textAlign(RIGHT);
         fill(174,22,35);
             str="The Syria Story";
-        ////this adds effects to the text 
+
         text(str.slice(0,strsize), width/2,height/2);
+        ////this adds effects to the text 
+           textSize(32);
+           fill(0);
+       textAlign(LEFT);
+             str="To Change Screens Use Left and Right Arrows";
+        
+             text(str.slice(0,strsize), 300,600);
+
             strsize++; 
         //fill(0);
        //ellipse (100,400,80,80);
@@ -247,9 +331,9 @@ function screenimage1()
         textAlign(CENTER);
         fill(112,112,219,100);
         noStroke();
-        rect(0, 50, windowWidth, 450);
+        rect(0, 50, 1200, 450);
         fill(255);
-        str="The war in Syria has killed over 220,000 people, uprooted families and left ancient cities like Aleppo in ruins.";
+        str="The war in Syria killed over 220,000 people, uprooted families, left ancient cities like Aleppo in ruins.";
             text(str.slice(0,strsize),width/2,height/4);
         str1="The descent into war began with the violent and brutal repression of peaceful pro-reform protests."
             text(str1.slice(0,strsize1) ,width/2,height/3);
@@ -258,7 +342,7 @@ function screenimage1()
         str3="Since then it is a regional conflict involving state and non state actors."
             text(str3.slice(0,strsize3),width/2,360);
         
-          textSize(35);
+          textSize(32);
           textAlign(CENTER);
           //fill(240,137,99);
           fill(174,22,35);
@@ -395,7 +479,7 @@ function screenimage1()
         fill(255);
         str="In March, there were over 1 Million refugees, half of them kids."
           text(str.slice(0,strsize),width/2,280);
-        str2="In June, the Syrian army recaptured the key border town of Qusayr, in an assault led by fighters led by Hezbollah."
+        str2="In June, Syrian army recaptured key border town of Qusayr, in an assault led by Hezbollah fighters."
           text(str2.slice(0,strsize2),width/2,320);
         str3="In November, the Syrian National Coalition was created bringing together the mail opposition fations."
           text(str3.slice(0,strsize3),width/2,360);
@@ -437,7 +521,7 @@ function screenimage1()
         textSize(25);
         //fill(62,57,69);
         fill(255);
-        str="By Jan 2014, infighting between rebels spread,pitting a variety of groups called ISIS aganist Al-aqeda Breakaway."
+        str="By Jan, infighting between rebels spread,pitting a group called ISIS aganist Al-aqeda Breakaway."
           text(str.slice(0,strsize) ,width/2,280);
         str1="Two rounds of peace talks led by UN-Arab League mediator Lakhdar Brahimi ended without a breakthrough"
           text(str1.slice(0,strsize1),width/2,320);
@@ -446,7 +530,7 @@ function screenimage1()
         str3="Syrians in government areas voted in presidential elections. Assad overwhelmingly won with 88.7 percent."
           text(str3.slice(0,strsize3) , width/2,400);
         str4="IS seized large parts of northern and western Iraq controlling a 3rd of Syria and Iraq."
-          text(str4.slice(0,strsize4)  ,width/2,450);
+          text(str4.slice(0,strsize4), width/2,450);
         strsize++;
         if( strsize>= str.length)
           strsize1++;
@@ -477,7 +561,7 @@ function screenimage1()
       text(str.slice(0,strsize) ,width/2,280);
       str1="IS released a video buring captured Jordanian pilot Muath al-Kaseasbeh, sparking outrage in Jordan."
           text(str1.slice(0,strsize1) ,width/2,320);
-        str2="IS overran Christian villages in Syrian eastern Hassakeh province, taking at least 220 Assyrian Christians hostage."
+        str2="IS overran Christian villages in Hassakeh province, taking at least 220 Assyrian Christians hostage."
           text(str2.slice(0,strsize2),width/2,360);
         str3="In Sept, Russians carried out its first air strikes in Syria, saying they targetted the Islamic State group."
           text(str3.slice(0,strsize3), width/2,400);
@@ -509,7 +593,7 @@ function screenimage1()
         fill(255);
         str="In March, Syrian government forces retake Palmyra from Islamic State with Russian air assistance."
           text(str.slice(0,strsize),width/2,280);
-        str1="Turkish troops crossed into Syria to help rebel groups push back Islamic State militants and Kurdish-led rebels "
+        str1="Turkish troops crossed into Syria to help rebel groups push back IS militants and Kurdish rebels "
           text(str1.slice(0,strsize1),width/2,320);
         str2="Government troops, backed by Russian air power and Iranian-sponsored militias, recaptured Aleppo."
           text(str2.slice(0,strsize2),width/2,360);
@@ -540,13 +624,13 @@ function screenimage1()
         textSize(25);
         //fill(62,57,69);
         fill(255);
-        str="Russia, Iran and Turkey agreed to enforce a ceasefire between the government and non-Islamist rebels"
+        str="Russia, Iran and Turkey agreed to enforce ceasefire between the government and non-Islamist rebels"
           text(str.slice(0,strsize),width/2,280);
-        str1="Trump ordered a attack on an airbase from which Syrian government planes staged chemical weapons attack"
+        str1="Trump ordered an attack on a airbase from which Syrian govt. planes attacked with chemical weapons."
           text(str1.slice(0,strsize1),width/2,320);
         str2="In May US decided to arm the YPG Kurdish Popular Protection Units."
           text(str2.slice(0,strsize2),width/2,360);
-        str3="These fight alongside the main opposition Syrian Democratic Forces, captured Tabqa dam from Islamic State."
+        str3="These fight alongside the main opposition Syrian Democratic Forces, captured Tabqa dam from IS."
           text(str3.slice(0,strsize3), width/2,400);
         fill(174,22,35);
         textSize(45);
@@ -681,4 +765,5 @@ function redfire()
       i = i + 3;
   }
 }
+
 
