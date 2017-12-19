@@ -394,7 +394,7 @@ function screenimage1()
         fill(255);
         str="On 15th March, 100s of people hundreds staged protests in Damascus and Aleppo."
           text(str.slice(0,strsize),width/2,280);
-        str1="They demanded democratic reforms,liberty, freedom for political prisoners after 40 years of brutal rule by Assad."
+        str1="They demanded democratic reforms,liberty, freedom for political prisoners after 40 years of Assad's rule"
           text(str1.slice(0,strsize1),width/2,320);
         str2= "3 days later security forces opened fire, killing 4 people."
           text(str2.slice(0,strsize2),width/2,360);
