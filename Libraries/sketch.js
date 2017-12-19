@@ -100,16 +100,17 @@ function setup()
              
     ///automatically changes to other screens
 
-       setInterval(transition, 17000);
+       setInterval(transition, 22000);
 
-    //function keyPressed()
-   //{
-  //console.log("hhhh");
- //if (keyCode==32 && keyIsPressed){
-//if(screenNo < 3)
-//screenNo++;
-//    }
-// }
+	    function keyPressed()
+	   {
+	  console.log("hhhh");
+	  if (keyCode==32 && keyIsPressed)
+	  {
+	  if(screenNo < 9)
+	  screenNo++;
+	    }
+	 }
 
              
 ///calls all the background images 
