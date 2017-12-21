@@ -649,8 +649,9 @@ function screenimage1()
       for (var j = 0; j <19; j++)
       reds[j].reds2();
 
-     }     
-   }
+     }
+
+  
 
 
 function effects()
@@ -767,3 +768,4 @@ function redfire()
 }
 
 
+}
